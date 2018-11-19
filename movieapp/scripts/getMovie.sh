@@ -1,1 +1,1 @@
-curl 'http://localhost:8000/movies/2/'
+curl 'http://localhost:8000/movies/4/'
