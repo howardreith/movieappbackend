@@ -56,10 +56,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'movieappbackend.urls'
 
-CORS_ORIGIN_WHITELIST = (
-    'localhost:7165'
-    'https://howardreith.github.io'
-)
+CORS_ORIGIN_ALLOW_ALL = True
+
+# CORS_ORIGIN_WHITELIST = (
+#     'localhost:7165'
+#     'https://howardreith.github.io'
+# )
 
 TEMPLATES = [
     {
