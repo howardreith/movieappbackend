@@ -58,6 +58,7 @@ ROOT_URLCONF = 'movieappbackend.urls'
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:7165'
+    'https://howardreith.github.io'
 )
 
 TEMPLATES = [
