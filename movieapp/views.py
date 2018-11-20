@@ -23,6 +23,20 @@ class movieList(generics.ListCreateAPIView):
 class movieDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = movie.objects.all()
     serializer_class = movieSerializer
+
+    def get_object(self, pk):
+        try:
+            return movie.objects.get(pk=pk)
+        except movie.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        movie = self.get_object(pk)
+        serializer = movieSerializer(movie)
+        data = serializer.data
+        data['moviename'] = "I am cute"
+        return Response(data)
+        # print(pk)
     # def get(self, request, pk, format=None):
     #     return self.get_object(pk)
     # queryset = movie.objects.all()
