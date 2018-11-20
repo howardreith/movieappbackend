@@ -5,7 +5,7 @@ from movieapp import views
 
 urlpatterns = [
     path('movies/', views.movieList.as_view()),
-    path('movies/<int:pk>/', views.movieDetail.as_view()),
+    # path('movies/<int:pk>/', views.movieDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

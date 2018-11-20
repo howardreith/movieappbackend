@@ -39,41 +39,15 @@ def findMovieMatches(title):
     dataframeSorted = dataframe.sort_values(['similarity'], ascending=False)[:15]
     return dataframeSorted.index.values
 
-class movieList(generics.ListCreateAPIView):
-    queryset = movie.objects.all()
-    serializer_class = movieSerializer
-    # def get(self, request):
-    #     movies1=movie.objects.all()
-    #     serializer=movieSerializer(movies1, many=True)
-    #     return Response(serializer.data)
-    #
-    # def post(self):
-    #     pass
-
-class movieDetail(generics.RetrieveUpdateDestroyAPIView):
+class movieList(generics.RetrieveUpdateDestroyAPIView):
     queryset = movie.objects.all()
     serializer_class = movieSerializer
 
-    def get_object(self, pk):
-        try:
-            return movie.objects.get(pk=pk)
-        except movie.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        movie = self.get_object(pk)
+    def get(self, request):
         serializer = movieSerializer(movie)
         data = serializer.data
         movieValue = request.body
         movieValue = str(movieValue)
-        movieValue=movieValue[2:]
-        movieValue = movieValue[:-1]
-        print(movieValue)
+        movieValue=movieValue[2:-1]
         data['movielist'] = findMovieMatches(movieValue)
-        # data['movielist'] = findMovieMatches(data["moviename"])
         return Response(data)
-        # print(pk)
-    # def get(self, request, pk, format=None):
-    #     return self.get_object(pk)
-    # queryset = movie.objects.all()
-    # serializer = movieSerializer
