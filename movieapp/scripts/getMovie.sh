@@ -1,4 +1,4 @@
-curl --request GET 'http://localhost:8000/movies/' \
+curl --request POST 'http://localhost:8000/movies/' \
 --data 'G.I. Jane (1997)'
 
 

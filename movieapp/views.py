@@ -33,20 +33,21 @@ def findMovieMatches(title):
     movieStats = ratings.groupby('title').agg({'rating': [np.size, np.mean]})
 
     popularMovies = movieStats['rating']['size'] >= 100
-    movieStats[popularMovies].sort_values([('rating', 'mean')], ascending=False)[:15]
+    movieStats[popularMovies].sort_values([('rating', 'mean')], ascending=False)[:16]
 
     dataframe = movieStats[popularMovies].join(pd.DataFrame(similarMovies, columns=['similarity']))
-    dataframeSorted = dataframe.sort_values(['similarity'], ascending=False)[:15]
+    dataframeSorted = dataframe.sort_values(['similarity'], ascending=False)[:16]
     return dataframeSorted.index.values
 
 class movieList(generics.RetrieveUpdateDestroyAPIView):
     queryset = movie.objects.all()
     serializer_class = movieSerializer
 
-    def get(self, request):
+    def post(self, request):
         serializer = movieSerializer(movie)
         data = serializer.data
         movieValue = request.body
+        print(movieValue)
         movieValue = str(movieValue)
         movieValue=movieValue[2:-1]
         data['movielist'] = findMovieMatches(movieValue)
