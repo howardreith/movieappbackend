@@ -25,7 +25,7 @@ SECRET_KEY = 'krbu64t9%p*%)*eqo0b9-%l+c@l^spbr7ea%ytle81y*f-h9t2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['stark-headland-39331.herokuapp.com']
+ALLOWED_HOSTS = ['stark-headland-39331.herokuapp.com', 'localhost']
 
 
 # Application definition
