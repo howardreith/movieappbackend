@@ -43,6 +43,9 @@ class movieList(generics.RetrieveUpdateDestroyAPIView):
     queryset = movie.objects.all()
     serializer_class = movieSerializer
 
+    def get(self, request):
+        return Response("To get list of movies, please POST with the movie name in the data.")
+
     def post(self, request):
         serializer = movieSerializer(movie)
         data = serializer.data
